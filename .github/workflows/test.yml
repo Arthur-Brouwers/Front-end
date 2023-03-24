@@ -1,32 +1,28 @@
-name: Create Pull Request
+name: Automatic Pull Request and Merge
 
 on:
   push:
     branches:
-      - main
+      - main # or any other branch you want to trigger the workflow on
 
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2.4.2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set remote URL
-      run: git remote add original https://github.com/ArthurBrouwersSemester3/Front-end/tree/Development
+      - name: Create branch
+        run: |
+          git checkout main
+          git push origin main
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
-      with:
-        branch: Development
-        title: My Pull Request Title
-        body: |
-          My pull request description.
-          It can include multiple lines of text.
-        commit-message: My commit message
-        labels: |
-          label1
-          label2 
-
-    - name: Remove remote URL
-      run: git remote remove original
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: 'Automated pull request'
+          title: 'Automated pull request'
+          branch: main
+          base: Development # or any other branch you want to merge into
+          token: ${{ secrets.GITHUB_TOKEN }}
