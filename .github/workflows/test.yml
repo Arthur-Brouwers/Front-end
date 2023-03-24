@@ -12,6 +12,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2.4.2
 
+    - name: Set remote URL
+      run: git remote add original <https://github.com/ArthurBrouwersSemester3/Front-end/tree/Development>
+
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
@@ -20,8 +23,10 @@ jobs:
         body: |
           My pull request description.
           It can include multiple lines of text.
-
         commit-message: My commit message
         labels: |
           label1
-          label2
+          label2 
+
+    - name: Remove remote URL
+      run: git remote remove original
