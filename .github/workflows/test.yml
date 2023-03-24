@@ -28,7 +28,7 @@ jobs:
           commit-message: 'Automated pull request'
           title: 'Automated pull request'
           branch: Development
-          base: main # or any other branch you want to merge into
+          base: main # or any other branch you want to merge intos
           token: ${{ secrets.PAT }}
 
     - name: Remove remote URL
