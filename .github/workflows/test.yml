@@ -24,15 +24,11 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
-        branch: Development
-        title: My Pull Request Title
-        body: |
-          My pull request description.
-          It can include multiple lines of text.
-        commit-message: My commit message
-        labels: |
-          label1
-          label2 
+          commit-message: 'Automated pull request'
+          title: 'Automated pull request'
+          branch: main
+          base: development # or any other branch you want to merge into
+          token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Remove remote URL
       run: git remote remove original
