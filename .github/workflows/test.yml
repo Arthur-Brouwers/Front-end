@@ -16,10 +16,10 @@ jobs:
       run: git remote add original https://github.com/ArthurBrouwersSemester3/Front-end.git
 
     - name: Fetch branch
-      run: git fetch upstream Development
+      run: git fetch original Development
 
     - name: Checkout branch
-      run: git checkout -b Development upstream/Development
+      run: git checkout -b Development original/Development
 
 
     - name: Create Pull Request
