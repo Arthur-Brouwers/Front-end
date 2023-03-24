@@ -26,8 +26,8 @@ jobs:
       with:
           commit-message: 'Automated pull request'
           title: 'Automated pull request'
-          branch: main
-          base: development # or any other branch you want to merge into
+          branch: Development
+          base: main # or any other branch you want to merge into
           token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Remove remote URL
