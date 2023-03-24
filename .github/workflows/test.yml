@@ -1,26 +1,36 @@
-# This is a YAML configuration file for a Node.js project
-# Define the name of the job
-name: Test
-# Define the trigger for the job
+name: Create Pull Request
+
 on:
   push:
     branches:
-      - Development
-# Define the steps for the job
+      - main
+
 jobs:
-  test:
-    # Define the operating system for the job
+  create-pull-request:
     runs-on: ubuntu-latest
-    # Define the steps to run
     steps:
     - name: Checkout code
       uses: actions/checkout@v2.4.2
+      
     - name: Install dependencies
-
       run: |
         npm install \
           vue3-charts --save \
           resize-observer-polyfill --save-dev
+          
     - name: Run tests
       run: npm run test:unit
 
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        branch: my-feature-branch
+        title: My Pull Request Title
+        body: |
+          My pull request description.
+          It can include multiple lines of text.
+
+        commit-message: My commit message
+        labels: |
+          label1
+          label2
